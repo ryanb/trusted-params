@@ -25,6 +25,7 @@ end
 
 module ActiveRecord
   # TODO for some reason this doesn't work for overriding methods
+  # currently this is done in init.rb instead
   # Base.class_eval do
   #   include TrustedParams::ActiveRecordAdditions
   # end
