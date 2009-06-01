@@ -9,9 +9,6 @@ Spec::Runner.configure do |config|
 end
 
 class MockedModel < ActiveRecord::Base
-  
-  include TrustedParams::ActiveRecordAdditions
-  
   class_inheritable_hash :paginate_options
   
   def self.paginate(options)
