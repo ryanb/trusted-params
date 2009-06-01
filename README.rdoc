@@ -2,6 +2,11 @@
 
 Rails plugin which adds a convenient way to override attr_accessible protection.
 
+If you are unfamiliar with the dangers of mass assignment please check these links
+
+* http://railspikes.com/2008/9/22/is-your-rails-application-safe-from-mass-assignment
+* http://railscasts.com/episodes/26-hackers-love-mass-assignment
+
 
 == Install
 
@@ -14,11 +19,11 @@ You can install this as a plugin into your Rails app.
 
 This plugin does several things.
 
+* Adds "trust" method on hash to bypass attribute protection
 * Disables attr_protected because you should use attr_accessible.
 * Requires attr_accessible be specified in every model
 * Adds :all as option to attr_accessible to allow all attributes to be mass-assignable
-* Raises an exception when assigning a protected attribute
-* Adds "trust" method on hash to bypass attribute protection
+* Raises an exception when assigning a protected attribute (instead of just a log message)
 
 
 == Usage
