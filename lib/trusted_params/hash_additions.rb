@@ -24,3 +24,14 @@ end
 class Hash
   include TrustedParams::HashAdditions
 end
+
+# override "dup" method because it doesn't carry over trusted attributes
+# I wish there was a better way to do this...
+class HashWithIndifferentAccess
+  def dup_with_trusted_attributes
+    hash = dup_without_trusted_attributes
+    hash.instance_variable_set("@trusted_attributes", instance_variable_get("@trusted_attributes"))
+    hash
+  end
+  alias_method_chain :dup, :trusted_attributes
+end

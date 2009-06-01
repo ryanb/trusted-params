@@ -35,6 +35,10 @@ class MockedModel < ActiveRecord::Base
     columns.index_by{|c| c.name.to_s}
   end
   
+  def logger
+    Logger.new("/dev/null")
+  end
+  
   def self.inspect
     "Model Mock"
   end

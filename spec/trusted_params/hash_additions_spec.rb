@@ -44,4 +44,11 @@ describe Hash do
     @hash.trust(:bar)
     @hash.should be_trusted("bar")
   end
+  
+  it "should persist trusted when duplicating HashWithIndifferentAccess" do
+    h1 = HashWithIndifferentAccess.new(:foo => "bar")
+    h1.trust
+    h2 = h1.dup
+    h2.should be_trusted(:foo)
+  end
 end
