@@ -23,8 +23,13 @@ describe MockedModel do
   
   it "should be able to mass assign specific attributes" do
     MockedModel.attr_accessible :name
-    user = MockedModel.new(:name => "foo")
-    user.name.should == "foo"
+    m = MockedModel.new(:name => "foo")
+    m.name.should == "foo"
     lambda { MockedModel.new(:content => "foo") }.should raise_error(ActiveRecord::UnavailableAttributeAssignmentError)
+  end
+  
+  it "should be able to mass assign with trusted hash" do
+    m = MockedModel.new({:name => "foo"}.trust)
+    m.name.should == "foo"
   end
 end

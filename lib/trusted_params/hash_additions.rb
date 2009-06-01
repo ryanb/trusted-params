@@ -4,16 +4,17 @@ module TrustedParams
       if attribute_names.empty?
         @trusted_attributes = :all
       else
-        @trusted_attributes = attribute_names
+        @trusted_attributes = attribute_names.map(&:to_sym)
         attribute_names.each do |attribute_name|
           self[attribute_name].trust if self[attribute_name].kind_of? Hash
         end
       end
+      self
     end
     
     def trusted?(attribute_name)
       if defined?(@trusted_attributes)
-        @trusted_attributes == :all || @trusted_attributes.include?(attribute_name)
+        @trusted_attributes == :all || @trusted_attributes.include?(attribute_name.to_sym)
       end
     end
   end

@@ -33,4 +33,15 @@ describe Hash do
     @hash.should be_trusted(:child)
     @hash[:child].should be_trusted(:boing)
   end
+  
+  it "should return hash from trust method" do
+    @hash.trust.should == @hash
+  end
+  
+  it "should be indifferent between string and symbol" do
+    @hash.trust("foo")
+    @hash.should be_trusted(:foo)
+    @hash.trust(:bar)
+    @hash.should be_trusted("bar")
+  end
 end
