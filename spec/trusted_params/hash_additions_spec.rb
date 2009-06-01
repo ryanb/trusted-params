@@ -51,4 +51,11 @@ describe Hash do
     h2 = h1.dup
     h2.should be_trusted(:foo)
   end
+  
+  it "should inherit trust in all nested hashes" do
+    @hash[:child] = { :boing => "bong" }
+    @hash.trust
+    @hash.should be_trusted(:child)
+    @hash[:child].should be_trusted(:boing)
+  end
 end

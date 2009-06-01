@@ -3,6 +3,7 @@ module TrustedParams
     def trust(*attribute_names)
       if attribute_names.empty?
         @trusted_attributes = :all
+        each_key { |k| self[k].trust if self[k].kind_of? Hash }
       else
         @trusted_attributes = attribute_names.map(&:to_sym)
         attribute_names.each do |attribute_name|
